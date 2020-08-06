@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='/style.css') }}"
+    />
+    <title>Geolocation</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Store Locator Based on User Postcode</h1>
+      <form action=" {{url_for('process_data')}} " method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+          {{ form.userAddress.label }} : {{ form.userAddress(size = 52) }}
+          <br />
+          {% for error in form.userAddress.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p class="submit">
+          {{ form.submit() }}
+        </p>
+      </form>
+    </div>
+  </body>
+</html>
